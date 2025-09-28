@@ -1,7 +1,7 @@
 import java.util.*;
 
 public class position {
-    private List<Object> coordinates;
+    private final List<Object> coordinates;
 
     private grid grid;
 

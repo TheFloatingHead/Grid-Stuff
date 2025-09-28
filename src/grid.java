@@ -1,16 +1,15 @@
 import java.util.*;
 
 public class grid {
-    //dimension maps
-    private HashMap<Integer, Object> length;
-    private HashMap<Integer, Object> width;
-    private HashMap<Integer, Object> depth;
+    private final HashMap<Integer, Object> length = new HashMap<>();
+    private final HashMap<Integer, Object> width = new HashMap<>();
+    private final HashMap<Integer, Object> depth = new HashMap<>();
 
     //value corresponding to the setup (types) map
-    private int classValue;
+    private final int classValue;
 
     //class value of the current grid
-    private Class<?> classType;
+    private final Class<?> classType;
 
     //contains all dimensions
     private ArrayList<HashMap<Integer, Object>> dimensions;
@@ -37,16 +36,11 @@ public class grid {
      * @param selection Integer containing a value corresponding
      *                  to the selected class type of the Grid
      */
-    public grid(int selection){
+    public grid(int selection, ArrayList<Object> lengthIn, ArrayList<Object> widthIn, ArrayList<Object> depthIn){
         classValue = selection;
 
         //sets the class type to the selected type
         classType = types.get(selection);
-
-        //initializes the dimensions
-        length = new HashMap<>();
-        width = new HashMap<>();
-        depth = new HashMap<>();
 
         //adds the dimensions to the main dimension ArrayList
         dimensions = new ArrayList<>();
@@ -54,6 +48,13 @@ public class grid {
         dimensions.add(1, width);
         dimensions.add(2, depth);
 
+        //sets the dimensions
+        ArrayList<ArrayList<Object>> dimensionsIn = new ArrayList<>();
+        dimensionsIn.add(lengthIn);
+        dimensionsIn.add(widthIn);
+        dimensionsIn.add(depthIn);
+
+        setDimensions(dimensionsIn);
     }
 
     /**
@@ -80,12 +81,12 @@ public class grid {
      *
      * @param inputs ArrayList of Object lists
      */
-    public void setDimensions(ArrayList<Object[]> inputs){
+    public void setDimensions(ArrayList<ArrayList<Object>> inputs){
 
         for (int i = 0; i< dimensions.size(); i++){                         //loops for the # of dimensions
 
-            for (int k = 0; k<inputs.get(i).length; k++){                   //loops for the size of the specific dimension's input array
-                dimensions.get(i).put(k, classType.cast(inputs.get(i)[k]));  //casts and adds each input dimensions value to the dimension's map
+            for (int k = 0; k<inputs.get(i).size(); k++){                   //loops for the size of the specific dimension's input array
+                dimensions.get(i).put(k, classType.cast(inputs.get(i).get(k)));  //casts and adds each input dimensions value to the dimension's map
             }
 
         }
@@ -99,7 +100,7 @@ public class grid {
         System.out.print("   ");
 
         for (int i = 0; i< dimensions.get(0).size(); i++){
-            System.out.print(dimensions.get(0).get(i)+"  ");
+            System.out.print(dimensions.getFirst().get(i)+"  ");
         }
 
         System.out.println();
