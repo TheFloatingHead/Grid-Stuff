@@ -20,10 +20,6 @@ public class position {
 
     }
 
-    private void setArrayN(Object length, Object width, Object depth){
-
-    }
-
     public void help(){
         int lineNumber = 1;
         int counter = 1;

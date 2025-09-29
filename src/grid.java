@@ -36,7 +36,7 @@ public class grid {
      * @param selection Integer containing a value corresponding
      *                  to the selected class type of the Grid
      */
-    public grid(int selection, ArrayList<Object> lengthIn, ArrayList<Object> widthIn, ArrayList<Object> depthIn){
+    public grid(int selection, ArrayList<ArrayList<Object>> dimensionsIn){
         classValue = selection;
 
         //sets the class type to the selected type
@@ -49,10 +49,6 @@ public class grid {
         dimensions.add(2, depth);
 
         //sets the dimensions
-        ArrayList<ArrayList<Object>> dimensionsIn = new ArrayList<>();
-        dimensionsIn.add(lengthIn);
-        dimensionsIn.add(widthIn);
-        dimensionsIn.add(depthIn);
 
         setDimensions(dimensionsIn);
     }
